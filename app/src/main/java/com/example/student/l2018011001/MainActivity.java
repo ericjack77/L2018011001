@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         tv.setText(String.valueOf(Integer.valueOf(tv.getText().toString())+1));
                     }
-                });
+                });//handler.post ()此項再丟回主執行緒裡跑
             }
-        }
+        }//mythread.run 副執行緒
 
     }
 }
