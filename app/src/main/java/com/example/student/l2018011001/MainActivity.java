@@ -18,33 +18,16 @@ public class MainActivity extends AppCompatActivity {
         tv=findViewById(R.id.textView);
         sb=findViewById(R.id.seekBar);
         handler=new Handler();
-        MyThread myThread=new MyThread();
-        myThread.start();
-
-
+        handler.post(r);
     }
 
-    public class MyThread extends Thread
-    {
+    Runnable r=new Runnable() {
         @Override
         public void run() {
-            super.run();
-            while (true)
-            {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            tv.setText(String.valueOf(Integer.valueOf(tv.getText().toString())+1));
+            handler.postDelayed(r,1000);
+        }
+    };
 
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        tv.setText(String.valueOf(Integer.valueOf(tv.getText().toString())+1));
-                    }
-                });//handler.post ()此項再丟回主執行緒裡跑
-            }
-        }//mythread.run 副執行緒
 
-    }
 }
